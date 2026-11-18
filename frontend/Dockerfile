@@ -9,7 +9,7 @@ RUN npm install
 
 # Copy source and build production assets
 COPY . .
-RUN npm run build
+RUN NODE_OPTIONS=--stack-size=65536 npm run build
 
 # ── Stage 2: Serve ──────────────────────────────────────────────────────────
 FROM nginx:1.27-alpine AS production
