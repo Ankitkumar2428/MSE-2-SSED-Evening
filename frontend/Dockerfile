@@ -1,5 +1,5 @@
 # ── Stage 1: Build ──────────────────────────────────────────────────────────
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ RUN npm install
 
 # Copy source and build production assets
 COPY . .
-RUN NODE_OPTIONS=--stack-size=65536 npm run build
+RUN npm run build
 
 # ── Stage 2: Serve ──────────────────────────────────────────────────────────
 FROM nginx:1.27-alpine AS production
